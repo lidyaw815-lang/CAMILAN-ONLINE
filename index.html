@@ -212,8 +212,8 @@ ${krupuk_qty.value} x Rp2.000 = Rp${sub.toLocaleString('id-ID')}
     if(tahu_qty.value>0) pesan+=`- Tahu Walik ${tahu_qty.value} pcs @Rp${Number(tahu_price.value).toLocaleString('id-ID')} (${tahu_pedas.value})\n`;
     if(daging_qty.value>0) pesan+=`- Cilot Daging ${daging_qty.value} pcs @Rp${Number(daging_price.value).toLocaleString('id-ID')} (${daging_pedas.value})\n`;
     if(aci_qty.value>0) pesan+=`- Cilot Aci ${aci_qty.value} pcs @Rp${Number(aci_price.value).toLocaleString('id-ID')} (${aci_pedas.value})\n`;
-    if(krupuk_qty.value>0) pesan+=`- Krupuk Beras ${krupuk_qty.value} pcs @Rp2.000`;
-    pesan+=`%0ATotal Pembayaran: Rp${total.toLocaleString('id-ID')}%0A%0A`;
+    if(krupuk_qty.value>0) pesan+=`- Krupuk Beras ${krupuk_qty.value} pcs @Rp2.000\n`;
+    pesan+=`\nTotal Pembayaran: Rp${total.toLocaleString('id-ID')}\n\n`;
     pesan+=`Mohon konfirmasi pesanan saya. Terima kasih.`;
     
     // Pastikan NOMOR WA Anda sudah benar (6285645831651)
