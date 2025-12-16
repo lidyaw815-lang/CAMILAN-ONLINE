@@ -208,11 +208,11 @@ ${krupuk_qty.value} x Rp2.000 = Rp${sub.toLocaleString('id-ID')}
     const total = hitungTotal();
     
     // Pastikan nomor WA dan format teks benar
-    let pesan='Halo, saya mau order camilan:%0A'; 
-    if(tahu_qty.value>0) pesan+=`- Tahu Walik ${tahu_qty.value} pcs @Rp${Number(tahu_price.value).toLocaleString('id-ID')} (${tahu_pedas.value})%0A`;
-    if(daging_qty.value>0) pesan+=`- Cilot Daging ${daging_qty.value} pcs @Rp${Number(daging_price.value).toLocaleString('id-ID')} (${daging_pedas.value})%0A`;
-    if(aci_qty.value>0) pesan+=`- Cilot Aci ${aci_qty.value} pcs @Rp${Number(aci_price.value).toLocaleString('id-ID')} (${aci_pedas.value})%0A`;
-    if(krupuk_qty.value>0) pesan+=`- Krupuk Beras ${krupuk_qty.value} pcs @Rp2.000%0A`;
+    let pesan='Halo, saya mau order camilan:\n'; 
+    if(tahu_qty.value>0) pesan+=`- Tahu Walik ${tahu_qty.value} pcs @Rp${Number(tahu_price.value).toLocaleString('id-ID')} (${tahu_pedas.value})\n`;
+    if(daging_qty.value>0) pesan+=`- Cilot Daging ${daging_qty.value} pcs @Rp${Number(daging_price.value).toLocaleString('id-ID')} (${daging_pedas.value})\n`;
+    if(aci_qty.value>0) pesan+=`- Cilot Aci ${aci_qty.value} pcs @Rp${Number(aci_price.value).toLocaleString('id-ID')} (${aci_pedas.value})\n`;
+    if(krupuk_qty.value>0) pesan+=`- Krupuk Beras ${krupuk_qty.value} pcs @Rp2.000`;
     pesan+=`%0ATotal Pembayaran: Rp${total.toLocaleString('id-ID')}%0A%0A`;
     pesan+=`Mohon konfirmasi pesanan saya. Terima kasih.`;
     
