@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Pesan Camilan</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#fff;margin:0;color:#333}
+    header{background:#ff5722;color:#fff;padding:16px;text-align:center}
+    header h1{font-size:20px;margin:0}
+    header p{font-size:13px;margin:6px 0 0}
+    .container{padding:12px}
+    .menu{border:1px solid #eee;border-radius:10px;padding:12px;margin-bottom:12px}
+    h3{margin:0 0 8px;font-size:16px}
+    label{font-size:13px;margin-top:6px;display:block}
+    input,select{width:100%;padding:8px;margin-top:4px;border-radius:6px;border:1px solid #ccc;font-size:14px}
+    .total{font-size:16px;font-weight:bold;text-align:center;margin:14px 0}
+    button{width:100%;padding:14px;font-size:16px;background:#25D366;color:#fff;border:none;border-radius:10px}
+    .error{color:#d32f2f;font-size:13px;text-align:center;display:none;margin-bottom:10px}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Camilan Favorit 🔥</h1>
+  <p>Pilih Menu → Tentukan Harga → Klik WhatsApp</p>
+</header>
+
+<div class="container">
+
+  <div class="menu">
+    <h3>Tahu Walik</h3>
+    <label>Jumlah</label>
+    <input type="number" min="0" value="0" id="tahu_qty">
+    <label>Harga</label>
+    <select id="tahu_price">
+      <option value="">Pilih Harga</option>
+      <option value="1000">Rp1.000</option>
+      <option value="3000">Rp3.000</option>
+      <option value="5000">Rp5.000</option>
+      <option value="10000">Rp10.000</option>
+      <option value="15000">Rp15.000</option>
+    </select>
+    <label>Level Pedas</label>
+    <select id="tahu_pedas">
+      <option>Tidak Pedas</option>
+      <option>Level 1</option>
+      <option>Level 2</option>
+      <option>Level 3</option>
+    </select>
+  </div>
+
+  <div class="menu">
+    <h3>Cilot Daging</h3>
+    <label>Jumlah</label>
+    <input type="number" min="0" value="0" id="daging_qty">
+    <label>Harga</label>
+    <select id="daging_price">
+      <option value="">Pilih Harga</option>
+      <option value="1000">Rp1.000</option>
+      <option value="3000">Rp3.000</option>
+      <option value="5000">Rp5.000</option>
+      <option value="10000">Rp10.000</option>
+      <option value="15000">Rp15.000</option>
+    </select>
+    <label>Level Pedas</label>
+    <select id="daging_pedas">
+      <option>Tidak Pedas</option>
+      <option>Level 1</option>
+      <option>Level 2</option>
+      <option>Level 3</option>
+    </select>
+  </div>
+
+  <div class="menu">
+    <h3>Cilot Aci</h3>
+    <label>Jumlah</label>
+    <input type="number" min="0" value="0" id="aci_qty">
+    <label>Harga</label>
+    <select id="aci_price">
+      <option value="">Pilih Harga</option>
+      <option value="1000">Rp1.000</option>
+      <option value="3000">Rp3.000</option>
+      <option value="5000">Rp5.000</option>
+      <option value="10000">Rp10.000</option>
+      <option value="15000">Rp15.000</option>
+    </select>
+    <label>Level Pedas</label>
+    <select id="aci_pedas">
+      <option>Tidak Pedas</option>
+      <option>Level 1</option>
+      <option>Level 2</option>
+      <option>Level 3</option>
+    </select>
+  </div>
+
+  <div class="menu">
+    <h3>Krupuk Beras</h3>
+    <p style="font-size:13px"><b>Rp2.000 / pcs</b></p>
+    <label>Jumlah</label>
+    <input type="number" min="0" value="0" id="krupuk_qty">
+  </div>
+
+  <div class="error" id="error">❗ Pilih harga untuk menu yang dipesan</div>
+
+  <div class="total" id="total">Total: Rp0</div>
+
+  <div class="menu" id="struk" style="display:none">
+    <h3>🧾 Ringkasan Pesanan</h3>
+    <div id="isiStruk" style="font-size:13px;line-height:1.6"></div>
+  </div>
+
+  <button onclick="kirimWA()">Pesan via WhatsApp</button>
+
+</div>
+
+<script>
+  function hitungTotal(){
+    let total = 0;
+    let struk = '';
+    if(tahu_qty.value>0 && tahu_price.value){
+      const sub = tahu_qty.value * tahu_price.value;
+      total += sub;
+      struk += `Tahu Walik (${tahu_pedas.value})
+${tahu_qty.value} x Rp${Number(tahu_price.value).toLocaleString('id-ID')} = Rp${sub.toLocaleString('id-ID')}
+
+`;
+    }
+    if(daging_qty.value>0 && daging_price.value){
+      const sub = daging_qty.value * daging_price.value;
+      total += sub;
+      struk += `Cilot Daging (${daging_pedas.value})
+${daging_qty.value} x Rp${Number(daging_price.value).toLocaleString('id-ID')} = Rp${sub.toLocaleString('id-ID')}
+
+`;
+    }
+    if(aci_qty.value>0 && aci_price.value){
+      const sub = aci_qty.value * aci_price.value;
+      total += sub;
+      struk += `Cilot Aci (${aci_pedas.value})
+${aci_qty.value} x Rp${Number(aci_price.value).toLocaleString('id-ID')} = Rp${sub.toLocaleString('id-ID')}
+
+`;
+    }
+    if(krupuk_qty.value>0){
+      const sub = krupuk_qty.value * 2000;
+      total += sub;
+      struk += `Krupuk Beras
+${krupuk_qty.value} x Rp2.000 = Rp${sub.toLocaleString('id-ID')}
+
+`;
+    }
+    document.getElementById('total').innerText = 'Total: Rp'+total.toLocaleString('id-ID');
+    if(struk){
+      document.getElementById('struk').style.display='block';
+      document.getElementById('isiStruk').innerText = struk + '----------------------
+TOTAL : Rp'+total.toLocaleString('id-ID');
+    } else {
+      document.getElementById('struk').style.display='none';
+    }
+    return total;
+  }
+
+  document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',hitungTotal));
+
+  function validasi(){
+    if(tahu_qty.value>0 && !tahu_price.value) return false;
+    if(daging_qty.value>0 && !daging_price.value) return false;
+    if(aci_qty.value>0 && !aci_price.value) return false;
+    return true;
+  }
+
+  function kirimWA(){
+    if(!validasi()){
+      document.getElementById('error').style.display='block';
+      return;
+    }
+    document.getElementById('error').style.display='none';
+    const total = hitungTotal();
+    let pesan='Halo, saya ingin pesan:%0A';
+    if(tahu_qty.value>0) pesan+=`- Tahu Walik ${tahu_qty.value} pcs @Rp${tahu_price.value} (${tahu_pedas.value})%0A`;
+    if(daging_qty.value>0) pesan+=`- Cilot Daging ${daging_qty.value} pcs @Rp${daging_price.value} (${daging_pedas.value})%0A`;
+    if(aci_qty.value>0) pesan+=`- Cilot Aci ${aci_qty.value} pcs @Rp${aci_price.value} (${aci_pedas.value})%0A`;
+    if(krupuk_qty.value>0) pesan+=`- Krupuk Beras ${krupuk_qty.value} pcs @Rp2.000%0A`;
+    pesan+=`%0ATotal: Rp${total.toLocaleString('id-ID')}`;
+    window.open('https://wa.me/6285645831651?text='+pesan,'_blank');
+  }
+</script>
+
+</body>
+</html>
